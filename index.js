@@ -41,15 +41,15 @@ function showCommits(data){
   let result=`<ul>${data.map((function(commit){
     return `
       <li>
-        <h3>SHA:${commit.sha}</h2>
+        <h3>SHA:${commit.sha}</h3>
         <div>
           <img width="100" height="100" src="${commit.author.avatar_url}"/>
         </div>
-        <h3>AUTHOR:${commit.author.login}</h2>
+        <h3>AUTHOR:${commit.author.login}</h3>
       </li>
     `
   }))}.fail(displayError)
   </ul>`;
   $("#details").html(result);
-  
+
 }
