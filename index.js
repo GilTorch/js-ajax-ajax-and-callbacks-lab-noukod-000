@@ -18,7 +18,7 @@ function searchRepositories(){
               </div>
               <h2><a href="${item.url}">${item.owner.login}</a>/${item.name}</h2>
               <p>${item.description}</p>
-              <a href="#" data-username="${item.owner.login}" data-repository="${item.name}" onclick="getCommits(this)">Show Commits</a>
+              <a href="#" data-username="${item.owner.login}" data-repository="${item.name}" onclick="showCommits(this)">Show Commits</a>
             </li>
           `
         }))}.fail(displayError)
@@ -26,10 +26,6 @@ function searchRepositories(){
         $("#results").html(result);
     })
   }
-}
-
-function getCommits(element){
-
 }
 
 function showCommits(element){
