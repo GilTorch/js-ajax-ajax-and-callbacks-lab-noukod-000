@@ -9,7 +9,7 @@ function searchRepositories(){
   const searchTerms=$("#searchTerms").val();
   if(searchTerms){
     $.get(`https://api.github.com/search/repositories?q=${searchTerms}`,function(data){
-        console.log(JSON.stringify(data))
+        // console.log(JSON.stringify(data))
         let result=`<ul>${data.items.map((function(item){
           return `
             <li>
