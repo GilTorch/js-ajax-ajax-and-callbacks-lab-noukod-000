@@ -31,7 +31,7 @@ function searchRepositories(){
 function showCommits(element){
   //list the SHA, the author, the author's login, and the author's avatar as an image.
   const repo=element.dataset.repository;
-  const owner=element.dataset.username;
+  const owner=element.dataset.owner;
  console.log(repo,owner);
   $.get(`https://api.github.com/repos/${owner}/${repo}/commits`,function(data){
     let result=`<ul>${data.map((function(commit){
