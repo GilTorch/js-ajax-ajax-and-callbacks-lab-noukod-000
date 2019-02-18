@@ -29,29 +29,29 @@ function searchRepositories(){
 }
 
 function getCommits(element){
-  const repo=element.dataset.repository;
-  const owner=element.dataset.username;
-
-  $.get(`https://api.github.com/repos/${owner}/${repo}/commits`,showCommits).fail(displayError);
 
 }
 
-function showCommits(data){
+function showCommits(element){
   //list the SHA, the author, the author's login, and the author's avatar as an image.
-  const newData=Array.prototype.slice.call(data);
-  console.log(data);
-  let result=`<ul>${Array.prototype.slice.call(data).map((function(commit){
-    return `
-      <li>
-        <h3>SHA:${commit.sha}</h3>
-        <div>
-          <img width="100" height="100" src="${commit.author.avatar_url}"/>
-        </div>
-        <h3>AUTHOR:${commit.author.login}</h3>
-      </li>
-    `
-  }))}.fail(displayError)
-  </ul>`;
-  $("#details").html(result);
+  const repo=element.dataset.repository;
+  const owner=element.dataset.username;
+
+  $.get(`https://api.github.com/repos/${owner}/${repo}/commits`,function(data){
+    let result=`<ul>${data.map((function(commit){
+      return `
+        <li>
+          <h3>SHA:${commit.sha}</h3>
+          <div>
+            <img width="100" height="100" src="${commit.author.avatar_url}"/>
+          </div>
+          <h3>AUTHOR:${commit.author.login}</h3>
+        </li>
+      `
+    }))}.fail(displayError)
+    </ul>`;
+    $("#details").html(result);
+  }).fail(displayError);
+
 
 }
