@@ -27,3 +27,29 @@ function searchRepositories(){
     })
   }
 }
+
+function getCommits(element){
+  const repo=element.dataset.repository;
+  const owner=element.dataset.username;
+
+  $.get(`https://api.github.com/repos/${owner}/${repo}/commits`,showCommits).fail(displayError);
+
+}
+
+function showCommits(data){
+  //list the SHA, the author, the author's login, and the author's avatar as an image.
+  let result=`<ul>${data.map((function(commit){
+    return `
+      <li>
+        <h3>SHA:${commit.sha}</h2>
+        <div>
+          <img width="100" height="100" src="${commit.author.avatar_url}"/>
+        </div>
+        <h3>AUTHOR:${commit.author.login}</h2>
+      </li>
+    `
+  }))}.fail(displayError)
+  </ul>`;
+  $("#details").html(result);
+  
+}
