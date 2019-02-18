@@ -38,7 +38,7 @@ function getCommits(element){
 
 function showCommits(data){
   //list the SHA, the author, the author's login, and the author's avatar as an image.
-  
+
   let result=`<ul>${Array.prototype.slice.call(data).map((function(commit){
     return `
       <li>
